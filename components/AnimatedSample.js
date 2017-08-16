@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   Animated,
+  Dimensions,
   PanResponder,
   StyleSheet,
   Text,
@@ -18,25 +19,37 @@ export default class AnimatedSample extends Component {
   }
 
   goUp() {
-    let displacement = this.state.displacement - 50
-    Animated.timing(this.state.animatedValue, {
-      toValue: displacement,
-      duration: 200
-    }).start();
-    this.setState({
-      displacement: displacement,
-    })
+    let dHeight = Dimensions.get('window').height
+    if (dHeight / 2 - 100 != -this.state.displacement) {
+      let displacement = this.state.displacement - 100
+      if (displacement < - dHeight / 2 + 50) {
+        displacement = - dHeight / 2 + 50
+      }
+      Animated.timing(this.state.animatedValue, {
+        toValue: displacement,
+        duration: 200
+      }).start();
+      this.setState({
+        displacement: displacement,
+      })
+    }
   }
 
   goDown() {
-    let displacement = this.state.displacement + 50
-    Animated.timing(this.state.animatedValue, {
-      toValue: displacement,
-      duration: 200
-    }).start();
-    this.setState({
-      displacement: displacement,
-    })
+    let dHeight = Dimensions.get('window').height
+    if (dHeight / 2 - 100 != this.state.displacement) {
+      let displacement = this.state.displacement + 100
+      if (displacement > dHeight / 2 - 50) {
+        displacement = dHeight / 2 - 50
+      }
+      Animated.timing(this.state.animatedValue, {
+        toValue: displacement,
+        duration: 200
+      }).start();
+      this.setState({
+        displacement: displacement,
+      })
+    }
   }
 
   render() {
