@@ -19,28 +19,24 @@ export default class AnimatedSample extends Component {
   }
 
   goUp() {
-    let dHeight = Dimensions.get('window').height
-    if (dHeight / 2 - 100 != -this.state.displacement) {
-      let displacement = this.state.displacement - 100
-      if (displacement < - dHeight / 2 + 50) {
-        displacement = - dHeight / 2 + 50
-      }
-      Animated.timing(this.state.animatedValue, {
-        toValue: displacement,
-        duration: 200
-      }).start();
-      this.setState({
-        displacement: displacement,
-      })
-    }
+    this.upDown(false)
   }
 
   goDown() {
+    this.upDown(true)
+  }
+
+  /**
+   * 上下移動を実行します。
+   * @param {boolean} down trueで下移動指定
+   */
+  upDown(down) {
     let dHeight = Dimensions.get('window').height
-    if (dHeight / 2 - 100 != this.state.displacement) {
-      let displacement = this.state.displacement + 100
-      if (displacement > dHeight / 2 - 50) {
-        displacement = dHeight / 2 - 50
+    if (dHeight / 2 - 50 >= Math.abs(this.state.displacement)) {
+      let displacement = this.state.displacement + (down ? 100 : -100)
+      if (Math.abs(displacement) > dHeight / 2 - 50) {
+        displacement = -dHeight / 2 + 50
+        if (down) displacement = -displacement
       }
       Animated.timing(this.state.animatedValue, {
         toValue: displacement,
