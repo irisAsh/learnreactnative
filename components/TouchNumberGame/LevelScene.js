@@ -11,8 +11,8 @@ export default class LevelScene extends Component {
     super(props)
   }
 
-  _onPress(level) {
-    console.log(level)
+  _changeLevel(level) {
+    this.props.onPress(level)
   }
 
   render() {
@@ -25,7 +25,7 @@ export default class LevelScene extends Component {
           buttonName={buttonName}
           buttonColor={levelColors[i]}
           level={i}
-          _onPress={this._onPress}
+          onPress={this._changeLevel.bind(this)}
         />
       )
     })

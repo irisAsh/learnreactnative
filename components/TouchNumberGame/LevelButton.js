@@ -8,7 +8,6 @@ import {
 export default class LevelButton extends Component {
   constructor(props) {
     super(props)
-    console.log(this.props)
   }
 
   render() {
@@ -17,7 +16,7 @@ export default class LevelButton extends Component {
         <Button
           title={this.props.buttonName}
           color='#FFFFFF'
-          onPress={() => this.props._onPress(this.props.level)}
+          onPress={() => this.props.onPress(this.props.level)}
         />
       </View>
     )

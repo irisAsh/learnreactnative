@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 
 import AnimatedSample from './components/AnimatedSample'
-import TouchNumberGame from './components/TouchNumberGame'
+import TouchNumberGame from './components/TouchNumberGame/TouchNumberGame'
 
 export default class App extends Component {
   render() {

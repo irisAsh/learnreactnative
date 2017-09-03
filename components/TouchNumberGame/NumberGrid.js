@@ -11,23 +11,13 @@ import GridItem from './GridItem'
 export default class NumberGrid extends Component {
   constructor(props) {
     super(props)
-    let data=[1,2,3,4,5,6,7,8,9]
-    // Schwartzian transform
-    data = data
-            .map((e) => [e, Math.random()])
-            .sort((a, b) => a[1] - b[1])
-            .map((e) => e[0])
-    const root = Math.ceil(Math.sqrt(data.length))
-    data = data.concat(Array.from(new Array(root*root - data.length)).fill(void 0))
-    const edge = Math.floor(Dimensions.get('window').width) / root - 5
     this.state = {
       correct: 1,
-      edge: edge,
-      gridData: data,
     }
   }
 
   _onPress(num) {
+    console.log('At numberGrid, level : ' + this.props.level)
     if (this.state.correct == num) {
       this.setState((prevState) => {
         return {
@@ -38,12 +28,17 @@ export default class NumberGrid extends Component {
   }
 
   render() {
-    const numbers = this.state.gridData.map((e, i) => {
+    console.log('JJJJJJJJJ: ' + this.props.level)
+    let data = createData(this.props.level)
+    const root = Math.ceil(Math.sqrt(data.length))
+    data = data.concat(Array.from(new Array(root*root - data.length)).fill(void 0))
+    const edge = Math.floor(Dimensions.get('window').width) / root - 5
+    const numbers = data.map((e, i) => {
       return (
         <GridItem
           key={i}
           active={e >= this.state.correct}
-          edge={this.state.edge}
+          edge={edge}
           backgroundColor='#40E0D0'
           num={e}
           onPress={this._onPress.bind(this)}
@@ -56,6 +51,17 @@ export default class NumberGrid extends Component {
       </View>
     )
   }
+}
+
+const createData = (level) => {
+  let col = level + 3
+  let data = Array.from(new Array(col * col)).map((e, i) => i+1)
+  // Schwartzian transform
+  data = data
+          .map((e) => [e, Math.random()])
+          .sort((a, b) => a[1] - b[1])
+          .map((e) => e[0])
+  return data
 }
 
 const styles = StyleSheet.create({
