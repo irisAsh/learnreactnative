@@ -11,10 +11,6 @@ export default class LevelScene extends Component {
     super(props)
   }
 
-  _changeLevel(level) {
-    this.props.onPress(level)
-  }
-
   render() {
     const levelColors = ['#FFC0CB', '#FF69B4', '#FF6347', '#DC143C']
     const buttons = Array.from(new Array(4)).map((e, i) => {
@@ -34,6 +30,10 @@ export default class LevelScene extends Component {
         {buttons}
       </View>
     )
+  }
+
+  _changeLevel(level) {
+    this.props.onPress(level)
   }
 }
 
