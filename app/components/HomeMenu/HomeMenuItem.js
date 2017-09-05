@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import {
+  Image,
+  StyleSheet,
   TouchableOpacity,
   Text,
   View,
@@ -12,13 +14,17 @@ export default class HomeMenuItem extends Component {
 
   render() {
     return (
-      <View>
-        <TouchableOpacity
-          onPress={() => this._onPress()}
-        >
+      <TouchableOpacity
+        onPress={() => this._onPress()}
+      >
+        <View style={styles.menuItemContainer}>
+          <Image
+            style={styles.imgBox}
+            source={this.props.imageName}
+          />
           <Text>{this.props.title}</Text>
-        </TouchableOpacity>
-      </View>
+        </View>
+      </TouchableOpacity>
     )
   }
 
@@ -26,3 +32,14 @@ export default class HomeMenuItem extends Component {
     this.props.onPressItem(this.props.id)
   }
 }
+
+const styles = StyleSheet.create({
+  imgBox: {
+    width: 80,
+    height: 80,
+  },
+  menuItemContainer: {
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+  },
+})

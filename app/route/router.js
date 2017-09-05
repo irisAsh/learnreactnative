@@ -8,11 +8,20 @@ import TouchNumberGame from '../components/TouchNumberGame/TouchNumberGame'
 export const HomeStack = StackNavigator({
   HomeMenu: {
     screen: HomeMenu,
+    navigationOptions: {
+      title: 'HomeMenu',
+    }
   },
   AnimatedSample: {
     screen: AnimatedSample,
+    navigationOptions: {
+      title: 'AnimatedSample',
+    }
   },
   TouchNumberGame: {
     screen: TouchNumberGame,
+    navigationOptions: {
+      title: 'TouchNumberGame',
+    }
   }
 })

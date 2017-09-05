@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {
   FlatList,
+  StyleSheet,
   Text,
   View,
 } from 'react-native'
@@ -15,7 +16,7 @@ export default class HomeMenu extends Component {
 
   render() {
     return (
-      <View>
+      <View style={styles.menuContainer}>
         <FlatList
           data={homeMenuData}
           keyExtractor={this._keyExtractor}
@@ -34,6 +35,7 @@ export default class HomeMenu extends Component {
       <HomeMenuItem
         id={item.id}
         title={item.id}
+        imageName={item.imageName}
         onPressItem={this._onChooseMenu}
       />
     )
@@ -43,3 +45,9 @@ export default class HomeMenu extends Component {
     this.props.navigation.navigate(screenId)
   }
 }
+
+const styles = StyleSheet.create({
+  menuContainer: {
+    flex: 1,
+  },
+})
