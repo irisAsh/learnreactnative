@@ -1,4 +1,4 @@
-const menuData = [
+export const networkData = [
   {
     title: '機内モード',
     icon: {
@@ -33,5 +33,18 @@ const menuData = [
   },
 ]
 
-
-export default menuData
+export const generalData = [
+  {
+    title: '一般',
+    icon: {
+      name: 'gear',
+      color: 'white',
+      type: 'octicon',
+      style: {
+        padding: 2,
+        backgroundColor: '#B4B4B4',
+      },
+    },
+    navigateScreen: 'GeneralMenu',
+  }
+]

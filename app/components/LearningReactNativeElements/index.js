@@ -11,7 +11,7 @@ export default class LearningReactNativeElements extends Component {
     return (
       <View>
         <SearchInput />
-        <MenuList />
+        <MenuList {...this.props} />
       </View>
     )
   }

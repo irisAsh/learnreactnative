@@ -6,7 +6,7 @@ import {
 
 import { List, ListItem } from 'react-native-elements'
 
-import menuData from './config/menuData'
+import { networkData, generalData } from './config/menuData'
 
 export default class MenuList extends Component {
   constructor(props) {
@@ -19,13 +19,14 @@ export default class MenuList extends Component {
         <ScrollView
           automaticallyAdjustContentInsets={false}
         >
-          {this.renderMenuItems()}
+          {this.renderMenuItems(networkData)}
+          {this.renderMenuItems(generalData)}
         </ScrollView>
       </View>
     )
   }
 
-  renderMenuItems = () => {
+  renderMenuItems = (menuData) => {
     return (
       <List>
         {
@@ -34,6 +35,7 @@ export default class MenuList extends Component {
               key={i}
               title={item.title}
               leftIcon={Object.assign({}, item.icon)}
+              onPress={!!item.navigateScreen ? () => this.props.navigation.navigate(item.navigateScreen) : null}
             />
           ))
         }

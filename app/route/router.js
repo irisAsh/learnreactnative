@@ -7,7 +7,9 @@ import FlickGame from '../components/FlickGame/FlickGame'
 import LearningReactNativeElements from '../components/LearningReactNativeElements'
 import TouchNumberGame from '../components/TouchNumberGame/TouchNumberGame'
 
-export const HomeStack = StackNavigator({
+import { LearningReactNativeElementsRoute } from '../components/LearningReactNativeElements/route/router'
+
+const HomeMenuRote = {
   HomeMenu: {
     screen: HomeMenu,
     navigationOptions: {
@@ -37,5 +39,10 @@ export const HomeStack = StackNavigator({
     navigationOptions: {
       title: 'TouchNumberGame',
     }
-  }
-})
+  },
+}
+
+export const HomeStack = StackNavigator(Object.assign({},
+  HomeMenuRote,
+  LearningReactNativeElementsRoute,
+))
