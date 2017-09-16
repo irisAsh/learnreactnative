@@ -1,20 +1,23 @@
 export const networkData = [
   {
     title: '機内モード',
-    icon: {
+    hideChevron: true,
+    leftIcon: {
       name: 'airplanemode-active',
     },
   },
   {
     title: 'Wi-Fi',
-    icon: {
+    hideChevron: true,
+    leftIcon: {
       name: 'wifi-tethering',
       color: '#7EDDFF',
     },
   },
   {
     title: 'Bluetooth',
-    icon: {
+    hideChevron: true,
+    leftIcon: {
       name: 'ios-bluetooth',
       color: '#3A57FF',
       type: 'ionicon',
@@ -22,7 +25,8 @@ export const networkData = [
   },
   {
     title: 'データ通信',
-    icon: {
+    hideChevron: true,
+    leftIcon: {
       name: 'access-point',
       color: 'white',
       type: 'material-community',
@@ -35,8 +39,17 @@ export const networkData = [
 
 export const generalData = [
   {
+    title: '通知',
+    leftIcon: {
+      name: 'bell-ring',
+      type: 'material-community',
+      color: '#FF4290',
+    },
+    navigateScreen: 'NoticeMenu',
+  },
+  {
     title: '画面表示と明るさ',
-    icon: {
+    leftIcon: {
       name: 'tablet-ipad',
       color: 'white',
       type: 'material-community',
@@ -46,14 +59,5 @@ export const generalData = [
       },
     },
     navigateScreen: 'DisplayMenu',
-  },
-  {
-    title: '通知',
-    icon: {
-      name: 'bell-ring',
-      type: 'material-community',
-      color: '#FF4290',
-    },
-    navigateScreen: 'NoticeMenu',
   },
 ]

@@ -19,8 +19,8 @@ export default class MenuList extends Component {
         <ScrollView
           automaticallyAdjustContentInsets={false}
         >
-          {this.renderMenuItems(networkData)}
           {this.renderMenuItems(generalData)}
+          {this.renderMenuItems(networkData)}
         </ScrollView>
       </View>
     )
@@ -32,9 +32,8 @@ export default class MenuList extends Component {
         {
           menuData.map((item, i) => (
             <ListItem
+              {...item}
               key={i}
-              title={item.title}
-              leftIcon={Object.assign({}, item.icon)}
               onPress={!!item.navigateScreen ? () => this.props.navigation.navigate(item.navigateScreen) : null}
             />
           ))

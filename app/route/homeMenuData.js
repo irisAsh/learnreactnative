@@ -2,6 +2,7 @@ export const homeMenuData = [
   {
     "id":     "LearningReactNativeElements",
     "title":  "LearningReactNativeElements",
+    "imageName":  require("../images/LearningReactNativeElements.png"),
   },
   {
     "id":     "FlickGame",
