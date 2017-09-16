@@ -46,5 +46,14 @@ export const generalData = [
       },
     },
     navigateScreen: 'DisplayMenu',
-  }
+  },
+  {
+    title: '通知',
+    icon: {
+      name: 'bell-ring',
+      type: 'material-community',
+      color: '#FF4290',
+    },
+    navigateScreen: 'NoticeMenu',
+  },
 ]
