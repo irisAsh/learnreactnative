@@ -35,16 +35,16 @@ export const networkData = [
 
 export const generalData = [
   {
-    title: '一般',
+    title: '画面表示と明るさ',
     icon: {
-      name: 'gear',
+      name: 'tablet-ipad',
       color: 'white',
-      type: 'octicon',
+      type: 'material-community',
       style: {
         padding: 2,
-        backgroundColor: '#B4B4B4',
+        backgroundColor: 'blue',
       },
     },
-    navigateScreen: 'GeneralMenu',
+    navigateScreen: 'DisplayMenu',
   }
 ]

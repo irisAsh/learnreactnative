@@ -1,11 +1,11 @@
 
-import GeneralMenu from '../GeneralMenu'
+import DisplayMenu from '../DisplayMenu'
 
 export const LearningReactNativeElementsRoute = {
-  GeneralMenu: {
-    screen: GeneralMenu,
+  DisplayMenu: {
+    screen: DisplayMenu,
     navigationOptions: {
-      title: '一般',
+      title: '画面表示と明るさ',
     }
   },
 }
