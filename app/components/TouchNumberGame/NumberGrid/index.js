@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   Dimensions,
-  StyleSheet,
   Text,
   View,
 } from 'react-native'
 
-import GridItem from './GridItem'
+import GridItem from '../GridItem'
+import styles from './styles'
 
 export default class NumberGrid extends Component {
   constructor(props) {
@@ -53,11 +54,7 @@ export default class NumberGrid extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  numbersContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
-})
+NumberGrid.propTypes = {
+  gridData: PropTypes.arrayOf(PropTypes.number).isRequired,
+  edge: PropTypes.number.isRequired,
+}

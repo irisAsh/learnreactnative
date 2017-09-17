@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import {
   Dimensions,
-  StyleSheet,
   View,
 } from 'react-native'
 
 import NumberGrid from './NumberGrid'
 import LevelScene from './LevelScene'
+import styles from './styles'
 
 export default class TouchNumberGame extends Component {
   constructor(props) {
@@ -27,7 +27,6 @@ export default class TouchNumberGame extends Component {
         <NumberGrid
           ref="numGrid"
           gridData={data}
-          root={root}
           edge={edge}
         />
         <LevelScene
@@ -55,11 +54,3 @@ export default class TouchNumberGame extends Component {
     return data
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexWrap: 'wrap',
-    marginTop: 30,
-  },
-})

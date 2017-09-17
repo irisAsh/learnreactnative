@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
   Button,
   StyleSheet,
   View,
 } from 'react-native'
+
+import styles from './styles'
 
 export default class LevelButton extends Component {
   constructor(props) {
@@ -23,11 +26,13 @@ export default class LevelButton extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  buttonBox: {
-    flex: 1,
-    flexWrap: 'nowrap',
-    alignItems: 'center',
-    margin: 5,
-  },
-})
+LevelButton.propTypes = {
+  buttonName: PropTypes.string.isRequired,
+  level: PropTypes.number.isRequired,
+  onPress: PropTypes.func.isRequired,
+  buttonColor: PropTypes.string,
+}
+
+LevelButton.defaultProps = {
+  buttonColor: '#2BBFFF',
+}

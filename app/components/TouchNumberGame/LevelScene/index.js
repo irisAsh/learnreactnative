@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import {
-  StyleSheet,
   View,
 } from 'react-native'
 
-import LevelButton from './LevelButton'
+import LevelButton from '../LevelButton'
+import styles from './styles'
 
 export default class LevelScene extends Component {
   constructor(props) {
@@ -37,9 +38,6 @@ export default class LevelScene extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  buttonsContainer: {
-    //flex: 1,
-    flexDirection: 'row',
-  },
-})
+LevelScene.propTypes = {
+  onPress: PropTypes.func.isRequired,
+}

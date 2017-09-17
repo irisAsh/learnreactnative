@@ -5,7 +5,7 @@ import HomeMenu from '../components/HomeMenu/HomeMenu'
 import AnimatedSample from '../components/AnimatedSample'
 import FlickGame from '../components/FlickGame/FlickGame'
 import LearningReactNativeElements from '../components/LearningReactNativeElements'
-import TouchNumberGame from '../components/TouchNumberGame/TouchNumberGame'
+import TouchNumberGame from '../components/TouchNumberGame'
 
 import { LearningReactNativeElementsRoute } from '../components/LearningReactNativeElements/route/router'
 
