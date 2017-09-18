@@ -8,6 +8,7 @@ import LearningReactNativeElements from '../components/LearningReactNativeElemen
 import TouchNumberGame from '../components/TouchNumberGame'
 
 import { LearningReactNativeElementsRoute } from '../components/LearningReactNativeElements/route/router'
+import { LearningRealmRoute } from '../components/LearningRealm/route/router'
 
 const HomeMenuRote = {
   HomeMenu: {
@@ -45,4 +46,5 @@ const HomeMenuRote = {
 export const HomeStack = StackNavigator(Object.assign({},
   HomeMenuRote,
   LearningReactNativeElementsRoute,
+  LearningRealmRoute,
 ))

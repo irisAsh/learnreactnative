@@ -1,5 +1,9 @@
 export const homeMenuData = [
   {
+    "id":     "LearningRealm",
+    "title":  "LearningRealm",
+  },
+  {
     "id":     "LearningReactNativeElements",
     "title":  "LearningReactNativeElements",
     "imageName":  require("../images/LearningReactNativeElements.png"),
