@@ -5,13 +5,14 @@ import {
 } from 'react-native'
 
 import Header from './components/Header'
+import BookList from './components/BookList'
 
 export default class LearningRealm extends Component {
   render() {
     return (
-      <View>
+      <View style={{flex: 1}}>
         <Header {...this.props} />
-        <Text>LearningRealm</Text>
+        <BookList />
       </View>
     )
   }

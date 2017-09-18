@@ -5,7 +5,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     marginTop: 10,
-    marginBottom: 10,
   },
   registerButtonStyle: {
     backgroundColor: '#5F16FF',
