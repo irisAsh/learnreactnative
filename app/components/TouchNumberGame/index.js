@@ -6,6 +6,7 @@ import {
 
 import NumberGrid from './NumberGrid'
 import LevelScene from './LevelScene'
+import TimerWatch from './TimerWatch'
 import styles from './styles'
 
 export default class TouchNumberGame extends Component {
@@ -25,9 +26,14 @@ export default class TouchNumberGame extends Component {
     return (
       <View style={styles.container}>
         <NumberGrid
-          ref="numGrid"
+          ref='numGrid'
           gridData={data}
           edge={edge}
+          start={this.timerStart}
+          stop={this.timerStop}
+        />
+        <TimerWatch
+          ref='timerWatch'
         />
         <LevelScene
           onPress={this._changeLevel.bind(this)}
@@ -37,10 +43,19 @@ export default class TouchNumberGame extends Component {
   }
 
   _changeLevel(level) {
+    this.refs.timerWatch.stop()
     this.setState({
       level: level,
     })
     this.refs.numGrid.clear()
+  }
+
+  timerStart = () => {
+    this.refs.timerWatch.start()
+  }
+
+  timerStop = () => {
+    this.refs.timerWatch.stop()
   }
 
   createData(level) {

@@ -14,7 +14,14 @@ export default class NumberGrid extends Component {
     super(props)
     this.state = {
       correct: 1,
+      maxNumber: Math.max.apply({}, this.props.gridData),
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      maxNumber: Math.max.apply({}, nextProps.gridData),
+    })
   }
 
   render() {
@@ -38,12 +45,18 @@ export default class NumberGrid extends Component {
   }
 
   _onPress(num) {
+    if (this.state.correct == 1) {
+      this.props.start()
+    }
     if (this.state.correct == num) {
       this.setState((prevState) => {
         return {
           correct: prevState.correct + 1,
         }
       })
+    }
+    if (this.state.correct == this.state.maxNumber) {
+      this.props.stop()
     }
   }
 
@@ -57,4 +70,11 @@ export default class NumberGrid extends Component {
 NumberGrid.propTypes = {
   gridData: PropTypes.arrayOf(PropTypes.number).isRequired,
   edge: PropTypes.number.isRequired,
+  start: PropTypes.func,
+  stop: PropTypes.func,
+}
+
+NumberGrid.propTypes = {
+  start: () => console.log('No start function'),
+  stop: () => console.log('No stop function'),
 }
