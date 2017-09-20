@@ -14,11 +14,27 @@ const styles = StyleSheet.create({
     padding: 4,
     paddingRight: 10,
   },
-  selecedText: {
-    fontSize: 16,
+  inputContainer: {
+    justifyContent: 'center',
     width: 180,
     borderColor: 'gray',
     borderWidth: 1
+  },
+  textStyle: {
+    fontSize: 16,
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  modalContent: {
+    justifyContent: 'flex-end',
+    flexDirection: 'row',
+    padding: 4,
+    backgroundColor: "#BEBEBE"
+  },
+  pickerContainer: {
+    backgroundColor: '#E0E0E0',
   },
 })
 
