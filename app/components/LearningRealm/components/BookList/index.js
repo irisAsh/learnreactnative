@@ -9,18 +9,14 @@ import {
   ListItem,
 } from 'react-native-elements'
 
+import ListBox from '../ListBox'
+
 export default class BookList extends Component {
   render() {
     return (
-      <View style={{flex: 1}}>
-        <ScrollView
-          automaticallyAdjustContentInsets={false}
-        >
-          <List>
-            {this.renderList()}
-          </List>
-        </ScrollView>
-      </View>
+      <ListBox
+        listItems={this.renderList()}
+      />
     )
   }
 
@@ -43,16 +39,13 @@ export default class BookList extends Component {
       },
     ]
     return (
-      data.map((elem, ind) => {
-         return (
-           <ListItem
-            key={ind}
-            title={elem.name}
-            subtitle={elem.author}
-            leftIcon={this.genreToIcon(elem.genre)}
-            hideChevron={true}
-          />
-        )
+      data.map(elem => {
+        return ({
+          title: elem.name,
+          subtitle: elem.author,
+          leftIcon: this.genreToIcon(elem.genre),
+          hideChevron: true,
+        })
       })
     )
   }
