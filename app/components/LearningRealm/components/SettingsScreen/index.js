@@ -16,11 +16,6 @@ export default class SettingsScreen extends Component {
     }
   }
 
-  componentWillUnmount() {
-    console.log('close')
-    this.state.realm.close()
-  }
-
   componentWillMount() {
     const realm = new Realm({
       path: Platform.OS === 'ios'
@@ -73,6 +68,7 @@ export default class SettingsScreen extends Component {
       console.log(e)
       this.setState({error: true})
     }
+    this.props.navigation.state.params.refresh()
   }
 
   setUpGenreList = (realm) => {

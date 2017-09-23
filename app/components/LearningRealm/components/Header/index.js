@@ -19,7 +19,7 @@ export default class Header extends Component {
           icon={{ name: 'settings', type: 'simple-line-icon' }}
           title='SETTINGS'
           buttonStyle={styles.settingsButtonStyle}
-          onPress={() => this.props.navigation.navigate('SettingsScreen')}
+          onPress={() => this.props.navigation.navigate('SettingsScreen', this.props.navigateParams)}
         />
       </View>
     )

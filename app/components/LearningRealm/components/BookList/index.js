@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
+  Platform,
   ScrollView,
   View,
  } from 'react-native'
@@ -8,10 +9,26 @@ import {
   List,
   ListItem,
 } from 'react-native-elements'
+import fs from 'react-native-fs'
+import Realm from 'realm'
 
 import ListBox from '../ListBox'
+import GenreModel from '../../models/GenreModel'
 
 export default class BookList extends Component {
+  componentWillMount() {
+    const realm = new Realm({
+      path: Platform.OS === 'ios'
+        ? fs.MainBundlePath + '/default.realm'
+        : fs.DocumentDirectoryPath + '/default.realm',
+      schema: [GenreModel],
+    })
+    console.log(realm.path)
+    this.setState({realm})
+    let genreData = realm.objects(GenreModel.schema.name)
+    this.setState({genreData})
+  }
+
   render() {
     return (
       <ListBox
@@ -25,7 +42,7 @@ export default class BookList extends Component {
       {
         name: 'きまぐれロボット',
         author: '星進一',
-        genre: 'literal',
+        genre: 'literature',
       },
       {
         name: 'AAAAAA',
@@ -38,6 +55,12 @@ export default class BookList extends Component {
         genre: 'computer',
       },
     ]
+    let activeGenre = this.state.genreData
+                        .filter((elem) => { return elem.favorite })
+                        .map((elem) => { return elem.value })
+    data = data.filter((elem) => {
+      return activeGenre.indexOf(elem.genre) > -1
+    })
     return (
       data.map(elem => {
         return ({
