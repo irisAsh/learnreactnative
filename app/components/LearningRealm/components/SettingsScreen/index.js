@@ -1,16 +1,24 @@
 import React, { Component } from 'react'
 import { Platform, View, Text } from 'react-native'
 import fs from 'react-native-fs'
+import Realm from 'realm'
 
 import ListBox from '../ListBox'
+import ErrorScene from '../ErrorScene'
 import { GENRE_LIST } from '../../config/configs'
 import GenreModel from '../../models/GenreModel'
-
-import Realm from 'realm'
 
 export default class SettingsScreen extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      error: false,
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('close')
+    this.state.realm.close()
   }
 
   componentWillMount() {
@@ -20,54 +28,23 @@ export default class SettingsScreen extends Component {
         : fs.DocumentDirectoryPath + '/default.realm',
       schema: [GenreModel],
     })
-    let genreData = realm.objects(GenreModel.schema.name).sorted('code', true)
-    this.setState({
-      realm,
-      genreData,
-    })
-    GENRE_LIST.map(elem => {
-      let genreItem = realm.objects(GenreModel.schema.name).filtered(`value = "${elem.value}"`)
-      if (genreItem.length == 0) {
-        if (genreData.length == 0) {
-          try {
-            realm.write(() => {
-              realm.create(GenreModel.schema.name, {
-                code: 1,
-                value: elem.value,
-                label: elem.label,
-              })
-            })
-          } catch (e) {
-            console.log(e)
-          }
-        } else {
-          let max = genreData[0]
-          try {
-            realm.write(() => {
-              realm.create(GenreModel.schema.name, {
-                code: max.code + 1,
-                value: elem.value,
-                label: elem.label,
-              })
-            })
-          } catch (e) {
-            console.log(e)
-          }
-        }
-        this.setState({[elem.value]: false})
-      } else {
-        let genre = genreItem[0]
-        this.setState({[elem.value]: genre.favorite})
-      }
-    })
+    console.log(realm.path)
+    this.setState({realm})
+    this.setUpGenreList(realm)
   }
 
   render() {
-    return (
-      <ListBox
-        listItems={this.renderList(GENRE_LIST)}
-      />
-    )
+    if (this.state.error) {
+      return (
+        <ErrorScene />
+      )
+    } else {
+      return (
+        <ListBox
+          listItems={this.renderList(GENRE_LIST)}
+        />
+      )
+    }
   }
 
   renderList = (data) => {
@@ -94,6 +71,39 @@ export default class SettingsScreen extends Component {
       })
     } catch (e) {
       console.log(e)
+      this.setState({error: true})
+    }
+  }
+
+  setUpGenreList = (realm) => {
+    let genreData = realm.objects(GenreModel.schema.name).sorted('code', true)
+    this.setState({genreData})
+
+    GENRE_LIST.map(elem => {
+      let genreItem = genreData.filtered(`value = "${elem.value}"`)
+
+      if (genreItem.length == 0) {
+        let newCode = genreData.length == 0 ? 1 : (genreData[0].code + 1)
+        this.realmCreate(realm, GenreModel.schema.name, {
+          code: newCode,
+            value: elem.value,
+            label: elem.label,
+        })
+        this.setState({[elem.value]: false})
+      } else {
+        this.setState({[elem.value]: genreItem[0].favorite})
+      }
+    })
+  }
+
+  realmCreate = (realm, schemaName, data, upsertFlg = true) => {
+    try {
+      realm.write(() => {
+        realm.create(schemaName, data, upsertFlg)
+      })
+    } catch (e) {
+      console.log(e)
+      this.setState({error: true})
     }
   }
 }
