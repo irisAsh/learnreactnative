@@ -1,6 +1,6 @@
 export default class Author {}
 
-Book.schema = {
+Author.schema = {
   name: 'Author',
   primaryKey: 'id',
   properties: {
