@@ -134,6 +134,8 @@ export default class RegisterScreen extends Component {
       author: '',
       genre: '',
     })
+    
+    this.props.navigation.state.params.refresh()
   }
 
   realmCreate = (realm, schemaName, data, upsertFlg = true) => {

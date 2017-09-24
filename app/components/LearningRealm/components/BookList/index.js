@@ -13,12 +13,20 @@ import ListBox from '../ListBox'
 import GenreModel from '../../models/GenreModel'
 import BookModel from '../../models/BookModel'
 import AuthorModel from '../../models/AuthorModel'
+import { GENRE_LIST } from '../../config/configs'
 
 export default class BookList extends Component {
   componentWillMount() {
     this.setState({realm: this.props.realm})
+
     let genreData = this.props.realm.objects(GenreModel.schema.name)
     this.setState({genreData})
+
+    let authorData = this.props.realm.objects(AuthorModel.schema.name)
+    this.setState({authorData})
+
+    let bookData = this.props.realm.objects(BookModel.schema.name)
+    this.setState({bookData})
   }
 
   render() {
@@ -30,60 +38,36 @@ export default class BookList extends Component {
   }
 
   renderList = () => {
-    let data = [
-      {
-        name: 'きまぐれロボット',
-        author: '星進一',
-        genre: 'literature',
-      },
-      {
-        name: 'AAAAAA',
-        author: 'aaaaaaa',
-        genre: 'comics',
-      },
-      {
-        name: 'BBBB',
-        author: 'bbbb',
-        genre: 'computer',
-      },
-    ]
-    let activeGenre = this.state.genreData
-                        .filter((elem) => { return elem.favorite })
-                        .map((elem) => { return elem.value })
-    data = data.filter((elem) => {
-      return activeGenre.indexOf(elem.genre) > -1
-    })
+    let activeGenreCode = this.state.genreData
+                            .filter((elem) => { return elem.favorite })
+                            .map((elem) => { return elem.code })
+
+    let genreCondition = activeGenreCode
+                            .map((elem) => { return `genreCode = ${elem}`})
+                            .join(' OR ')
+
+    let bookList = this.state.bookData.filtered(genreCondition)
+
     return (
-      data.map(elem => {
+      bookList.map(elem => {
         return ({
           title: elem.name,
-          subtitle: elem.author,
-          leftIcon: this.genreToIcon(elem.genre),
+          subtitle: this.getAuthor(elem.authorId),
+          leftIcon: this.getGenreIcon(elem.genreCode),
           hideChevron: true,
         })
       })
     )
   }
 
-  genreToIcon = (genre) => {
-    switch (genre) {
-      case 'literal':
-        return {
-          name: 'book',
-          type: 'octicons',
-          color: '#FFA912',
-        }
-      case 'comics':
-        return {
-          name: 'pokeball',
-          type: 'material-community',
-          color: '#FF3612',
-        }
-      case 'computer':
-        return {
-          name: 'computer',
-          color: '#300082',
-        }
-    }
+  getAuthor = (id) => {
+    let author = this.state.authorData.filtered(`id = ${id}`)[0]
+    return author ? author.name : ''
+  }
+
+  getGenreIcon = (code) => {
+    let genre = this.state.genreData.filtered(`code = ${code}`)[0]
+    let item = GENRE_LIST.find((elem) => { return elem.value === (genre ? genre.value : '')})
+    return item ? item.leftIcon : {}
   }
 }
