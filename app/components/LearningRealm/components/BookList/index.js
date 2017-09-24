@@ -46,7 +46,9 @@ export default class BookList extends Component {
                             .map((elem) => { return `genreCode = ${elem}`})
                             .join(' OR ')
 
-    let bookList = this.state.bookData.filtered(genreCondition)
+    let bookList = this.state.bookData.length == 0
+                    ? []
+                    : this.state.bookData.filtered(genreCondition)
 
     return (
       bookList.map(elem => {

@@ -2,6 +2,7 @@ export const homeMenuData = [
   {
     "id":     "LearningRealm",
     "title":  "LearningRealm",
+    "imageName":  require("../images/LearningRealm.png"),
   },
   {
     "id":     "LearningReactNativeElements",
