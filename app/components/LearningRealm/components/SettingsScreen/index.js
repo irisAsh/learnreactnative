@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import { Platform, View, Text } from 'react-native'
-import fs from 'react-native-fs'
-import Realm from 'realm'
+import { View, Text } from 'react-native'
 
 import ListBox from '../ListBox'
 import ErrorScene from '../ErrorScene'
@@ -19,15 +17,8 @@ export default class SettingsScreen extends Component {
   }
 
   componentWillMount() {
-    const realm = new Realm({
-      //path: Platform.OS === 'ios'
-        //? fs.MainBundlePath + '/default.realm'
-        //: fs.DocumentDirectoryPath + '/default.realm',
-      schema: [GenreModel, BookModel, AuthorModel],
-    })
-    console.log(realm.path)
-    this.setState({realm})
-    this.setUpGenreList(realm)
+    this.setState({realm: this.props.navigation.state.params.realm})
+    this.setUpGenreList(this.props.navigation.state.params.realm)
   }
 
   render() {

@@ -13,7 +13,7 @@ export default class Header extends Component {
           icon={{ name: 'book', type: 'font-awesome' }}
           title='REGISTER'
           buttonStyle={styles.registerButtonStyle}
-          onPress={() => this.props.navigation.navigate('RegisterScreen', this.props.navigateParam)}
+          onPress={() => this.props.navigation.navigate('RegisterScreen', this.props.navigateParams)}
         />
         <Button
           icon={{ name: 'settings', type: 'simple-line-icon' }}

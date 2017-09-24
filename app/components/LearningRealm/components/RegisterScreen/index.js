@@ -1,12 +1,9 @@
 import React, { Component } from 'react'
 import {
-  Platform,
   Text,
   View,
 } from 'react-native'
 import { Button } from 'react-native-elements'
-import fs from 'react-native-fs'
-import Realm from 'realm'
 
 import TextBox from '../TextBox'
 import SelectBox from '../SelectBox'
@@ -30,14 +27,7 @@ export default class RegisterScreen extends Component {
   }
 
   componentWillMount() {
-    const realm = new Realm({
-      //path: Platform.OS === 'ios'
-        //? fs.MainBundlePath + '/default.realm'
-        //: fs.DocumentDirectoryPath + '/default.realm',
-      schema: [GenreModel, BookModel, AuthorModel],
-    })
-    console.log(realm.path)
-    this.setState({realm})
+    this.setState({realm: this.props.navigation.state.params.realm})
   }
 
   render() {

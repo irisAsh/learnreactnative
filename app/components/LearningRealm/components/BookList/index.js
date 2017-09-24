@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import {
-  Platform,
   ScrollView,
   View,
  } from 'react-native'
@@ -9,8 +8,6 @@ import {
   List,
   ListItem,
 } from 'react-native-elements'
-import fs from 'react-native-fs'
-import Realm from 'realm'
 
 import ListBox from '../ListBox'
 import GenreModel from '../../models/GenreModel'
@@ -19,15 +16,8 @@ import AuthorModel from '../../models/AuthorModel'
 
 export default class BookList extends Component {
   componentWillMount() {
-    const realm = new Realm({
-      //path: Platform.OS === 'ios'
-        //? fs.MainBundlePath + '/default.realm'
-        //: fs.DocumentDirectoryPath + '/default.realm',
-      schema: [GenreModel, BookModel, AuthorModel],
-    })
-    console.log(realm.path)
-    this.setState({realm})
-    let genreData = realm.objects(GenreModel.schema.name)
+    this.setState({realm: this.props.realm})
+    let genreData = this.props.realm.objects(GenreModel.schema.name)
     this.setState({genreData})
   }
 
