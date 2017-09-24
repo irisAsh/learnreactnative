@@ -9,6 +9,10 @@ const styles = StyleSheet.create({
     marginTop: 30,
     backgroundColor: '#5F16FF',
   },
+  errorText: {
+    color: 'red',
+    paddingTop: 20,
+  },
 })
 
 export default styles

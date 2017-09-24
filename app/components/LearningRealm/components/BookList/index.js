@@ -14,14 +14,16 @@ import Realm from 'realm'
 
 import ListBox from '../ListBox'
 import GenreModel from '../../models/GenreModel'
+import BookModel from '../../models/BookModel'
+import AuthorModel from '../../models/AuthorModel'
 
 export default class BookList extends Component {
   componentWillMount() {
     const realm = new Realm({
-      path: Platform.OS === 'ios'
-        ? fs.MainBundlePath + '/default.realm'
-        : fs.DocumentDirectoryPath + '/default.realm',
-      schema: [GenreModel],
+      //path: Platform.OS === 'ios'
+        //? fs.MainBundlePath + '/default.realm'
+        //: fs.DocumentDirectoryPath + '/default.realm',
+      schema: [GenreModel, BookModel, AuthorModel],
     })
     console.log(realm.path)
     this.setState({realm})

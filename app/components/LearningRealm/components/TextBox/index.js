@@ -11,9 +11,6 @@ import styles from './styles'
 export default class TextBox extends Component {
   constructor(props) {
     super(props)
-    this.state = {
-      text: '',
-    }
   }
 
   render() {
@@ -26,18 +23,19 @@ export default class TextBox extends Component {
           onChangeText={(text) => this._onChangeText(text)}
           returnKeyType='done'
           style={[styles.inputContainer, this.props.inputStyle]}
+          value={this.props.text}
         />
       </View>
     )
   }
 
   _onChangeText = (text) => {
-    this.setState({ text })
     this.props.onChangeText(text)
   }
 }
 
 TextBox.propTypes = {
+  text: PropTypes.string.isRequired,
   containerStyle: PropTypes.any,
   inputStyle: PropTypes.any,
   labelStyle: PropTypes.any,
