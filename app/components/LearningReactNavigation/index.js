@@ -9,18 +9,22 @@ import { StackNavigator } from 'react-navigation'
 const LearningReactNavigation = ({ navigation }) => (
   <View>
     <Text>Learing React Navigation</Text>
-    <Button
-      onPress={() => navigation.goBack(null)}
-      title='BACK'
-    />
   </View>
 )
 
 const LearningReactNavigationStack = StackNavigator({
   LearningReactNavigation: {
     screen: LearningReactNavigation,
-    navigationOptions: {
-      title: 'Main Screen',
+    navigationOptions: props => {
+      return {
+        title: 'Learing React Navigation',
+        headerLeft: (
+          <Button
+            onPress={() => props.navigation.goBack(null)}
+            title='Back'
+          />
+        ),
+      }
     },
   },
 })
