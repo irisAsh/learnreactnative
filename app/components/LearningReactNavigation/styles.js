@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-const styles = {
+const styles = StyleSheet.create({
   listContainer: {
     paddingTop: 4,
     paddingBottom: 4,
@@ -14,6 +14,6 @@ const styles = {
     fontSize: 12,
     paddingTop: 8,
   },
-}
+})
 
 export default styles

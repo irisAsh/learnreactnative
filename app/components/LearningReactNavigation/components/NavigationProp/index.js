@@ -6,21 +6,37 @@ import {
 } from 'react-native'
 import { StackNavigator } from 'react-navigation'
 
-import PrototypeScreen from '../PrototypeScreen'
+import styles from './styles'
+import PropTestScreen from '../PropTestScreen'
 
 const NavigationProp = ({ navigation }) => (
-  <View>
-    <View>
+  <View style={styles.container}>
+    <View style={styles.buttonContainer}>
       <Button
         title='Red Button'
-        onPress={() => navigation.navigate('RedScreen', { buttonName: 'Red Button' })}
+        color='white'
+        onPress={() => navigation.navigate('RedScreen', {
+          screenText: 'Red Button が押されました',
+          screenColor: '#FF4949',
+          changeFlag: false,
+        })}
+      />
+    </View>
+    <View style={styles.buttonContainer}>
+      <Button
+        title='Blue Button'
+        color='white'
+        onPress={() => navigation.navigate('BlueScreen', {
+          screenText: 'Blue Button が押されました',
+          screenColor: '#2172FF',
+          changeFlag: false,
+        })}
       />
     </View>
   </View>
 )
 
 NavigationProp.navigationOptions = props => {
-  console.log(props)
   return {
     title: 'Navigation Prop',
     headerStyle: {
@@ -36,7 +52,13 @@ NavigationProp.navigationOptions = props => {
 }
 
 const RedScreen = ({ navigation }) => (
-  <PrototypeScreen
+  <PropTestScreen
+    navigation={navigation}
+  />
+)
+
+const BlueScreen = ({ navigation }) => (
+  <PropTestScreen
     navigation={navigation}
   />
 )
@@ -47,6 +69,9 @@ const NavigationPropStack = StackNavigator({
   },
   RedScreen: {
     screen: RedScreen,
+  },
+  BlueScreen: {
+    screen: BlueScreen,
   },
 })
 

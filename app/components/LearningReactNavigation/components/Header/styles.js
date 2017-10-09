@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native'
 
-const styles = {
+const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FF4986',
     padding: 20,
@@ -15,6 +15,6 @@ const styles = {
     alignSelf: 'flex-end',
     paddingTop: 8,
   },
-}
+})
 
 export default styles
