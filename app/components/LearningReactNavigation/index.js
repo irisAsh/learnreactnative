@@ -10,12 +10,18 @@ import { StackNavigator } from 'react-navigation'
 import styles from './styles'
 import Header from './components/Header'
 import NavigationProp from './components/NavigationProp'
+import DrawerScreen from './components/DrawerScreen'
 
 const ScreenRoutes = {
   NavigationProp: {
     title: 'Navigation Prop を学ぶ',
     description: '遷移先画面で利用できる Navigation Prop を学びます。',
     screen: NavigationProp,
+  },
+  DrawerScreen: {
+    title: 'DrawerNavigator を学ぶ',
+    description: '画面横から現れるメニューによる画面遷移を学びます。',
+    screen: DrawerScreen,
   },
 }
 
@@ -41,10 +47,10 @@ const LearningReactNavigation = ({ navigation }) => (
 
 const LearningReactNavigationStack = StackNavigator(
   {
-    ...ScreenRoutes,
     LearningReactNavigation: {
       screen: LearningReactNavigation,
     },
+    ...ScreenRoutes,
   },
   {
     initialRouteName: 'LearningReactNavigation',
