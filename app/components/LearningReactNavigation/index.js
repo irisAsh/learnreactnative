@@ -11,6 +11,7 @@ import styles from './styles'
 import Header from './components/Header'
 import NavigationProp from './components/NavigationProp'
 import DrawerScreen from './components/DrawerScreen'
+import TabScreen from './components/TabScreen'
 
 const ScreenRoutes = {
   NavigationProp: {
@@ -22,6 +23,11 @@ const ScreenRoutes = {
     title: 'DrawerNavigator を学ぶ',
     description: '画面横から現れるメニューによる画面遷移を学びます。',
     screen: DrawerScreen,
+  },
+  TabScreen: {
+    title: 'TabNavigator を学ぶ',
+    description: '画面下に表示されるタブメニューによる画面遷移を学びます。',
+    screen: TabScreen,
   },
 }
 
